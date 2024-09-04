@@ -14,7 +14,14 @@ app.use(cors(
 ))
 app.use(express.json())
 
-mongoose.connect('mongodb://127.0.0.1:27017/Todo')
+// mongoose.connect('mongodb://127.0.0.1:27017/Todo')
+mongoose.connect('your-mongodb-atlas-connection-string', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log("Connected to MongoDB"))
+.catch(err => console.error("Failed to connect to MongoDB", err));
+
 
 app.get('/', (req, res) => {
         res.json("hello hii")
