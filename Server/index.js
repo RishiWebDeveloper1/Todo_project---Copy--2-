@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const TodoModel = require("./Models/Todo")
+const http = require("http")
 const { Server } = require("socket.io");
 
 
@@ -69,6 +70,6 @@ app.put('/update/:id', (req, res) => {
         .catch(err => res.json(err));
 });
 
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log("Server is Started....")
 })
