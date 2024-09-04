@@ -17,7 +17,7 @@ app.use(express.json())
 mongoose.connect('mongodb://127.0.0.1:27017/Todo')
 
 app.get('/', (req, res) => {
-        res.json("hello")
+        res.json("hello hii")
 })
 
 app.get('/get', (req, res) => {
