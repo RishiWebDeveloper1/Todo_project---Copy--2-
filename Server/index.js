@@ -14,6 +14,11 @@ const io = new Server(server, {
         credentials: true
     }
 });
+const serverio = new Server(server, {
+    cors: {
+        origin: "*"
+    }
+});
 
 app.use(cors());
 app.use(express.json());
@@ -38,7 +43,7 @@ app.get('/get', (req, res) => {
 app.post('/add', (req, res) => {
     const task = req.body.task;
     TodoModel.create({ task: task }).then(result => {
-        io.emit('todoUpdated');  // Notify all clients about the update
+        server.emit('todoUpdated');  // Notify all clients about the update
         res.json(result);
     })
     .catch(err => res.json(err));
@@ -48,7 +53,7 @@ app.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
     TodoModel.findByIdAndDelete({ _id: id })
         .then(result => {
-            io.emit('todoUpdated');  // Notify all clients about the update
+            server.emit('todoUpdated');  // Notify all clients about the update
             res.json(result);
         })
         .catch(err => res.json(err));
@@ -60,7 +65,7 @@ app.put('/update/:id', (req, res) => {
 
     TodoModel.findByIdAndUpdate(id, { task: task }, { new: true })
         .then(result => {
-            io.emit('todoUpdated');  // Notify all clients about the update
+            server.emit('todoUpdated');  // Notify all clients about the update
             res.json(result);
         })
         .catch(err => res.json(err));
