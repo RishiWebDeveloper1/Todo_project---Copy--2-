@@ -4,12 +4,23 @@ import Navbar from './component/Navbar'
 import Search_panel from './component/Search_panel'
 import Todo_container from './component/Todo_container'
 import axios from 'axios'
+import { io } from "socket.io-client";
 
 function App() {
     const [todos, setTodo] = useState([]);
 
     useEffect(() => {
         fetchTodo()
+
+        const socket = io("https://todo-master-server.vercel.app");
+        
+        socket.on("todoAdded", (newTodo) => {
+            setTodo(prevTodos => [...prevTodos, newTodo]);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
     }, [])
 
     function fetchTodo() {

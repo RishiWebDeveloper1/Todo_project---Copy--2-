@@ -2,9 +2,19 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const TodoModel = require("./Models/Todo")
+const { Server } = require("socket.io");
 
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: ["https://todo-masters.vercel.app"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true
+    }
+});
+
 app.use(cors(
     {
         origin: ["https://todo-masters.vercel.app"],
@@ -19,12 +29,12 @@ mongoose.connect('mongodb+srv://rishivishwa4877:rishiMongodb@cluster0.k16x7.mong
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(() => console.log("Connected to MongoDB"))
-.catch(err => console.error("Failed to connect to MongoDB", err));
+    .then(() => console.log("Connected to MongoDB"))
+    .catch(err => console.error("Failed to connect to MongoDB", err));
 
 
 app.get('/', (req, res) => {
-        res.json("hello hii")
+    res.json("hello hii")
 })
 
 app.get('/get', (req, res) => {
@@ -35,7 +45,11 @@ app.get('/get', (req, res) => {
 
 app.post('/add', (req, res) => {
     const task = req.body.task;
-    TodoModel.create({ task: task }).then(result => res.json(result))
+    TodoModel.create({ task: task })
+        .then(result => {
+            io.emit("todoAdded", result);
+            res.json(result)
+        })
         .catch(err => res.json(err))
 })
 
