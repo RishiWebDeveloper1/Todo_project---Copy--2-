@@ -6,7 +6,7 @@ const Search_panel = ({ fetchTodo }) => {
     const [task, setTask] = useState('');
 
     const handlerAdd = () => {
-        axios.post(`http://localhost:3000/add`, { task })
+        axios.post(`https://todo-master-server.vercel.app/add`, { task })
             .then(result => {
                 setTask('');
                 fetchTodo();
