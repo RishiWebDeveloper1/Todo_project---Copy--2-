@@ -15,7 +15,7 @@ app.use(cors(
 app.use(express.json())
 
 // mongoose.connect('mongodb://127.0.0.1:27017/Todo')
-mongoose.connect('mongodb+srv://rishivishwa4877:<db_password>@cluster0.k16x7.mongodb.net/', {
+mongoose.connect('mongodb+srv://rishivishwa4877:NQbthlodxDwC0o0s@cluster0.k16x7.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
