@@ -52,10 +52,10 @@ const Todo_container = ({ todos, fetchTodo }) => {
                         }
                         <div className="img-box">
                             <div className="edit-icon-box">
-                                <img src="https://github.com/RishiWebDeveloper1/Todo-masters/blob/b3fef34921f28a1b3dbd6ba9aa2db9b9e54d80b6/TODO_project/src/assets/edit-icon.gif?raw=true" alt="edit" onClick={() => startEdit(todo._id, todo.task)} className="edit-icon" />
+                                <img src="https://raw.githubusercontent.com/RishiWebDeveloper1/Todo-masters/b3fef34921f28a1b3dbd6ba9aa2db9b9e54d80b6/TODO_project/src/assets/edit-icon.gif" alt="edit" onClick={() => startEdit(todo._id, todo.task)} className="edit-icon" />
                             </div>
                             <div className="delete-icon-box">
-                                <img src="https://github.com/RishiWebDeveloper1/Todo-masters/blob/b3fef34921f28a1b3dbd6ba9aa2db9b9e54d80b6/TODO_project/src/assets/delete-icon.gif?raw=true" alt="delete" onClick={() => deleteText(todo._id)} className="delete-icon" />
+                                <img src="https://raw.githubusercontent.com/RishiWebDeveloper1/Todo-masters/b3fef34921f28a1b3dbd6ba9aa2db9b9e54d80b6/TODO_project/src/assets/delete-icon.gif" alt="delete" onClick={() => deleteText(todo._id)} className="delete-icon" />
                             </div>
                         </div>
                     </div>

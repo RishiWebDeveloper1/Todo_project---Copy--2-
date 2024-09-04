@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { io } from 'socket.io-client';
 import './App.css';
 import Navbar from './component/Navbar';
 import Search_panel from './component/Search_panel';
 import Todo_container from './component/Todo_container';
-import axios from 'axios';
-import { io } from 'socket.io-client';
 
-const socket = io('https://todo-master-server.vercel.app');
+const socket = io('https://todo-master-server.vercel.app'); // Connect to your Vercel server
 
 function App() {
     const [todos, setTodo] = useState([]);
@@ -15,10 +15,11 @@ function App() {
         fetchTodo();
 
         socket.on('todoUpdated', () => {
-            fetchTodo();
+            fetchTodo();  // Refetch todos when an update is detected
         });
+
         return () => {
-            socket.off('todoUpdated');
+            socket.off('todoUpdated');  // Clean up the event listener
         };
     }, []);
 

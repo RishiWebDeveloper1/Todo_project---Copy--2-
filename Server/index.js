@@ -9,8 +9,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ["https://todo-masters.vercel.app"],
-        methods: ["POST", "GET", "PUT", "DELETE"],
+        origin: "https://todo-masters.vercel.app",
+        methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true
     }
 });
@@ -38,7 +38,7 @@ app.get('/get', (req, res) => {
 app.post('/add', (req, res) => {
     const task = req.body.task;
     TodoModel.create({ task: task }).then(result => {
-        io.emit('todoUpdated');
+        io.emit('todoUpdated');  // Notify all clients about the update
         res.json(result);
     })
     .catch(err => res.json(err));
@@ -48,7 +48,7 @@ app.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
     TodoModel.findByIdAndDelete({ _id: id })
         .then(result => {
-            io.emit('todoUpdated');
+            io.emit('todoUpdated');  // Notify all clients about the update
             res.json(result);
         })
         .catch(err => res.json(err));
@@ -60,7 +60,7 @@ app.put('/update/:id', (req, res) => {
 
     TodoModel.findByIdAndUpdate(id, { task: task }, { new: true })
         .then(result => {
-            io.emit('todoUpdated');
+            io.emit('todoUpdated');  // Notify all clients about the update
             res.json(result);
         })
         .catch(err => res.json(err));
