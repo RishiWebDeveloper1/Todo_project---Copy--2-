@@ -13,7 +13,7 @@ function App() {
     }, [])
 
     function fetchTodo() {
-        axios.get('http://localhost:3000/get')
+        axios.get('https://todo-master-server.vercel.app/get')
             .then(result => setTodo(result.data))
             .catch(err => console.log(err))
     }
