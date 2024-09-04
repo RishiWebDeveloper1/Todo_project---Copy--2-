@@ -12,7 +12,7 @@ const Todo_container = ({ todos, fetchTodo }) => {
     }
 
     function saveText(id) {
-        axios.put(`https://todo-master-server.vercel.app/${id}`, { task: editedTask })
+        axios.put(`https://todo-master-server.vercel.app/update/${id}`, { task: editedTask })
             .then(result => {
                 setEditId(null);
                 fetchTodo();
@@ -21,7 +21,7 @@ const Todo_container = ({ todos, fetchTodo }) => {
     }
 
     function deleteText(id) {
-        axios.delete(`https://todo-master-server.vercel.app/${id}`)
+        axios.delete(`https://todo-master-server.vercel.app/delete/${id}`)
             .then(result => fetchTodo())
             .catch(err => console.log(err))
     }
