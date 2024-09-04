@@ -52,10 +52,10 @@ const Todo_container = ({ todos, fetchTodo }) => {
                         }
                         <div className="img-box">
                             <div className="edit-icon-box">
-                                <img src="src\assets\edit-icon.gif" alt="edit" onClick={() => startEdit(todo._id, todo.task)} className="edit-icon" />
+                                <img src="./src\assets\edit-icon.gif" alt="edit" onClick={() => startEdit(todo._id, todo.task)} className="edit-icon" />
                             </div>
                             <div className="delete-icon-box">
-                                <img src="src\assets\delete-icon.gif" alt="delete" onClick={() => deleteText(todo._id)} className="delete-icon" />
+                                <img src="./src\assets\delete-icon.gif" alt="delete" onClick={() => deleteText(todo._id)} className="delete-icon" />
                             </div>
                         </div>
                     </div>
